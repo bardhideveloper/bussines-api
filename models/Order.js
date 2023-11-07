@@ -19,6 +19,10 @@ const Order = sequelize.define('Order',{
       key: 'id',
     },
   },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   timestamps:true,
 });

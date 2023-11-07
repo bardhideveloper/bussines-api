@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 exports.getAllOrders = async (req, res) => {
     try {
-      const { page = 1, perPage = 10 } = req.query;
+      const { page = 1, perPage = 20 } = req.query;
       const offset = (page - 1) * perPage;
   
       const orders = await Order.findAll({

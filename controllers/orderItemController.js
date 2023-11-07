@@ -5,7 +5,8 @@ const sequelize = require('../db.js');
 
 exports.createOrderWithProducts = async (req, res) => {
   try {
-    const { user_id, products } = req.body;
+    const { user_id, products, address } = req.body;
+    //console.log('Request Data:', req.body);
 
     // Check if there is sufficient stock for each product in the order
     for (const product of products) {
@@ -22,7 +23,7 @@ exports.createOrderWithProducts = async (req, res) => {
     const t = await sequelize.transaction();
 
     try {
-      const order = await Order.create({ user_id, order_date: new Date(), total_cost }, { transaction: t });
+      const order = await Order.create({ user_id, order_date: new Date(), total_cost , address}, { transaction: t });
 
       for (const product of products) {
         const { product_id, quantity, unit_price } = product;
